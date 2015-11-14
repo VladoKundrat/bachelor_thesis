@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'database_of_janacek_works',
+    'django_datatables_view'
 )
 
 MIDDLEWARE_CLASSES = (

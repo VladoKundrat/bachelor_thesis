@@ -1,0 +1,259 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
+
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'database_of_janacek_works/style.css' %}" />
+
+    <ul id="menu">
+        <li><a href="/janacek/piece/">Piece</a></li>
+        <li><a href="/janacek/album/">Albums</a></li>
+    </ul>
+
+
+</head>
+<body>
+<table id="album" class="display" cellspacing="0" width="100%" data-url="{% url 'rest_album_data' %}">
+    <thead>
+    <tr>
+        <th>LABEL NAME</th>
+        <th>CATALOGUE NUMBER</th>
+        <th>ALBUM NAME</th>
+        <th>ALBUM PUBLISHED YEAR</th>
+        <th>PUBLISHED COUNTRY</th>
+        <th>NUMBER OF MEDIA</th>
+        <th>recording_technology </th>
+        <th>side_coumpling</th>
+        <th>diameter</th>
+        <th>rpm</th>
+        <th>tv_system</th>
+        <th>region_code</th>
+        <th>sound_system</th>
+        <th>medium_type</th>
+        <th>comment</th>
+        <th>subtitles</th>
+        <th>text_language</th>
+        <th>text_by</th>
+        <th>note_language</th>
+        <th>note_by</th>
+        <th>libretto_language</th>
+        <th>libretto_by</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+    <tfoot>
+    <tr>
+
+    </tr>
+    </tfoot>
+</table>
+
+<script type="text/javascript">
+
+    {% comment %}/* Formatting function for row details - modify as you need */{% endcomment %}
+
+    function format ( d ) {
+    // `d` is the original data object for the row
+    return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">'+
+        '<tr>'+
+            '<td>Album published year:</td>'+
+            '<td>'+d[3]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Published countryt:</td>'+
+            '<td>'+d[4]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Number of media:</td>'+
+            '<td>'+d[5]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Recording technology:</td>'+
+            '<td>'+d[6]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Side coumpling:</td>'+
+            '<td>'+d[7]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Diameter:</td>'+
+            '<td>'+d[8]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>RPM:</td>'+
+            '<td>'+d[9]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>TV system:</td>'+
+            '<td>'+d[10]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Region code:</td>'+
+            '<td>'+d[11]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Sound system:</td>'+
+            '<td>'+d[12]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Medium type:</td>'+
+            '<td>'+d[13]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Comment:</td>'+
+            '<td>'+d[14]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Subtitles:</td>'+
+            '<td>'+d[15]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Text language:</td>'+
+            '<td>'+d[16]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Text author:</td>'+
+            '<td>'+d[17]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Note language:</td>'+
+            '<td>'+d[18]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Note author:</td>'+
+            '<td>'+d[19]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Libretto language:</td>'+
+            '<td>'+d[20]+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Libretto author:</td>'+
+            '<td>'+d[21]+'</td>'+
+        '</tr>'+
+    '</table>';
+    }
+
+    $(document).ready(function() {
+        var table = $('#album').DataTable( {
+            "processing": true,
+            "serverSide": true,
+            "dataType": "json",
+            "ajax": "{% url 'rest_album_data' %}",
+            "columns": [
+                {   "className": 'details-control',}
+            ],
+            "columnDefs": [
+                {
+                    "targets":[3],
+                    "visible": false
+                },
+                {
+                    "targets":[4],
+                    "visible": false
+                },
+                {
+                    "targets":[5],
+                    "visible": false
+                },
+                {
+                    "targets":[6],
+                    "visible": false
+                },
+                {
+                    "targets":[7],
+                    "visible": false
+                },
+                {
+                    "targets":[8],
+                    "visible": false
+                },
+                {
+                    "targets":[9],
+                    "visible": false
+                },
+                {
+                    "targets":[10],
+                    "visible": false
+                },
+                {
+                    "targets":[11],
+                    "visible": false
+                },
+                {
+                    "targets":[12],
+                    "visible": false
+                },
+                {
+                    "targets":[13],
+                    "visible": false
+                },
+                {
+                    "targets":[14],
+                    "visible": false
+                },
+                    {
+                    "targets":[15],
+                    "visible": false
+                },
+                {
+                    "targets":[16],
+                    "visible": false
+                },
+                {
+                    "targets":[17],
+                    "visible": false
+                },
+                {
+                    "targets":[18],
+                    "visible": false
+                },
+                {
+                    "targets":[19],
+                    "visible": false
+                },
+                {
+                    "targets":[20],
+                    "visible": false
+                },
+                {
+                    "targets":[21],
+                    "visible": false
+                }
+            ]
+        });
+
+    // Add event listener for opening and closing details
+    $('#album tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+            if ( row.child.isShown() ) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            }
+            else {
+                // Open this row
+                row.child( format(row.data()) ).show();
+                tr.addClass('shown');
+            }
+        });
+    });
+    </script>
+
+
+
+
+</body>
+</html>

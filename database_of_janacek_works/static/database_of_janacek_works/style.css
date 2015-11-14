@@ -1,0 +1,26 @@
+ul#menu {
+    padding: 0;
+}
+
+ul#menu li {
+    display: inline;
+}
+
+ul#menu li a {
+    font-size: 20px;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px 4px 0 0;
+}
+
+ul#menu li a:hover {
+    color: blue;
+}
+
+td.details-control {
+    /*background: green no-repeat center center;*/
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: no-repeat center center;
+}
