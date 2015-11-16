@@ -1,7 +1,10 @@
-{# piece_list.html #}
 {% load static %}
 
-{% block media %}
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+
+    <link rel="stylesheet" type="text/css" href="{% static "style.css" %}" />
 
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
 
@@ -12,13 +15,35 @@
 
     <script type="text/javascript" src=" {% static "datatableview/static/js/datatableview.js" %}"></script>
 
-   {% comment %} <script type="text/javascript" charset="utf8" src="{{ STATIC_URL }}datatableview/static/js/datatableview.js"></script>{% endcomment %}
 
+    <ul id="menu">
+        <li><a href="/janacek/piece/">Piece</a></li>
+        <li><a href="/janacek/album/">Albums</a></li>
+    </ul>
 
-    {% comment %}<script type="text/javascript" src="{{ STATIC_URL }}js/datatableview.js"></script>{% endcomment %}
+</head>
+<body>
 
-{% endblock %}
-
-{% block content %}
     {{ datatable }}
-{% endblock %}
+
+</body>
+
+
+    <script type="text/javascript">
+    //datatableview.auto_initialize = false;
+
+    $(function() {
+        datatableview.initialize($('.mytable'));
+        
+    })
+
+    {% comment %}$(document).ready(function() {
+        var table = $('.datatable').DataTable( {
+
+        });
+
+    });{% endcomment %}
+    </script>
+
+
+</html>
