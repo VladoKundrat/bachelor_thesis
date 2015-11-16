@@ -19,6 +19,8 @@
     <ul id="menu">
         <li><a href="/janacek/piece/">Piece</a></li>
         <li><a href="/janacek/album/">Albums</a></li>
+        <li><a href="/janacek/arrangement">Arrangements</a></li>
+        <li><a href="/janacek/movement">Movements</a></li>
     </ul>
 
 </head>
@@ -29,13 +31,32 @@
 </body>
 
 
-    <script type="text/javascript">
-    //datatableview.auto_initialize = false;
 
-    $(function() {
-        datatableview.initialize($('.mytable'));
-        
-    })
+
+{% comment %}
+        datatableview.auto_initialize = false;
+
+
+        $(function() {
+            datatableview.initialize($('.mytable'));
+        }
+        $(document).ready(function() {
+            ($('.datatable').DataTable( {
+            "columnDefs": [
+                {
+                    "targets": [ 2 ],
+                    "visible": false,
+                    "searchable": false
+                },
+                {
+                    "targets": [ 3 ],
+                    "visible": false
+                }
+            ]
+        }));
+
+    });
+{% endcomment %}
 
     {% comment %}$(document).ready(function() {
         var table = $('.datatable').DataTable( {
@@ -43,7 +64,7 @@
         });
 
     });{% endcomment %}
-    </script>
+
 
 
 </html>
