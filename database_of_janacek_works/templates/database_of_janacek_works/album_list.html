@@ -1,0 +1,18 @@
+{% load staticfiles  %}
+
+{% block media %}
+
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
+
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}/static/js/datatableview.js"></script>
+
+{% endblock %}
+
+{% block content %}
+    {{ datatable }}
+{% endblock %}
