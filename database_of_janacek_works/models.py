@@ -60,6 +60,7 @@ class Album(models.Model):
     note_by = models.CharField(max_length=255, blank=True, null=True)
     libretto_language = models.CharField(max_length=255, blank=True, null=True)
     libretto_by = models.CharField(max_length=255, blank=True, null=True)
+    catalogue_number_LJF = models.CharField(max_length=255, blank=True, null=True)
     piece = models.ManyToManyField(Piece, through='AlbumPiece', through_fields=('album', 'piece'))
 
 

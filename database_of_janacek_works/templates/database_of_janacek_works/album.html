@@ -1,0 +1,174 @@
+{% load static %}
+{% include "database_of_janacek_works/main_menu.html" %}
+
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+<style>
+    #ex1 {
+
+    margin: auto;
+
+    }
+
+{% comment %}#ex1.clicked {
+    width: 70%;
+    border: 3px solid red;
+}{% endcomment %}
+
+</style>
+
+</head>
+<body>
+<div id="ex1">
+<table id="album" class="display" cellspacing="0" width="100%" data-url="{% url 'rest_album' %}">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>LABEL NAME</th>
+        <th>CATALOGUE NUMBER</th>
+        <th>ALBUM NAME</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+    <tfoot>
+    <tr>
+
+    </tr>
+    </tfoot>
+</table>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var table = $('#album').DataTable( {
+            "processing": true,
+            "serverSide": true,
+            "dataType": "json",
+            "ajax": "{% url 'rest_album' %}",
+            "pageLength": 15,
+            "deferRender": true,
+{% comment %}            "columns": [
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'}
+            ],{% endcomment %}
+            "columnDefs": [
+                {
+                    "targets":[4],
+                    "visible": false
+                },
+                {
+                    "targets":[5],
+                    "visible": false
+                },
+                {
+                    "targets":[6],
+                    "visible": false
+                },
+                {
+                    "targets":[7],
+                    "visible": false
+                },
+                {
+                    "targets":[8],
+                    "visible": false
+                },
+                {
+                    "targets":[9],
+                    "visible": false
+                },
+                                    {
+                    "targets":[10],
+                    "visible": false
+                },
+                                    {
+                    "targets":[11],
+                    "visible": false
+                },
+                                    {
+                    "targets":[12],
+                    "visible": false
+                },
+                                    {
+                    "targets":[13],
+                    "visible": false
+                },
+                                    {
+                    "targets":[14],
+                    "visible": false
+                },
+                                    {
+                    "targets":[15],
+                    "visible": false
+                },
+                                    {
+                    "targets":[16],
+                    "visible": false
+                },
+                                    {
+                    "targets":[17],
+                    "visible": false
+                },
+                                    {
+                    "targets":[18],
+                    "visible": false
+                },
+                                    {
+                    "targets":[19],
+                    "visible": false
+                },
+                                    {
+                    "targets":[20],
+                    "visible": false
+                },
+                                    {
+                    "targets":[21],
+                    "visible": false
+                },
+                {
+                    "targets":[22],
+                    "visible": false
+                }
+            ]
+        });
+        });
+
+</script>
+
+<script>
+
+    $(document).ready(function() {
+        $('#album tbody').on('click', 'tr', function () {
+            //$("#ex1").width("70%");
+            //alert("70%");
+            var albumId = $(this).find("td:first").text();
+
+            var url = '{% url 'album_detail' 999 %}'.replace (999, albumId);
+            window.location.href = url
+
+        });
+    });
+
+
+
+$(document).ready(function(){
+
+    $(".btn1").click(function(){
+        $("#ex2").hide();
+        $("#ex1").width("100%")
+    });
+});
+
+</script>
+
+
+</body>
+</html>

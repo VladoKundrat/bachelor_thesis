@@ -1,0 +1,113 @@
+{% include "database_of_janacek_works/album.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+<style>
+#ex2 h1 {
+    text-align: center;
+    color: #006699;
+}
+
+#ex2 {
+    width: 30%;
+    float: left;
+}
+
+#ex1 {
+    width: 70%;
+    margin: auto;
+    float: right;
+
+    {% comment %}transition: width 2s;{% endcomment %}
+}
+
+.ul_container ul{
+    list-style: none;
+}
+</style>
+
+</head>
+<body>
+
+<div id="ex2">
+<h1>{{ album.label_name }} - {{ album.catalogue_number }}</h1>
+
+
+<div class="ul_container">
+    <ul class="mainnav" id="nav" style="list-style:none;">
+
+        <li><a href="javascript:void(0)"><h3>TRACKS</h3></a>
+            <ul class="subnav" id="sub1">
+                {% if not album.piece.all %}
+                    <li>No tracks</li>
+                {% else %}
+                    {% for piece in album.piece.all %}
+
+                        <li><a href="/janacek/piece/detail/{{ piece.piece_id }}">{{ piece.cz_title}}</a></li>
+
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </li>
+
+        <li><a href="javascript:void(0)"><h3>TRACKS ORDER</h3></a>
+            <ul class="subnav" id="sub1">
+                {% if not album.albumpiece_set.all %}
+                    <li>No tracks</li>
+                {% else %}
+                    {% for piece in album.albumpiece_set.all %}
+                        <li>{{ piece.piece_id }}, {{ piece.track_order }}</li>
+
+
+                       {% comment %} {% for piece in album.piece.all %}
+                            {{ piece.cz_title  }}
+                        {% endfor %}{% endcomment %}
+
+
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </li>
+
+        <li><a href="javascript:void(0)"><h3>COMPOSER</h3></a>
+            <ul class="subnav" id="sub1">
+                {% if not album.composer_set.all %}
+                    <li>No composers</li>
+                {% else %}
+                    {% for composer in album.composer_set.all %}
+                        <li>{{ composer.composer_name }}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </li>
+
+    </ul>
+</div>
+
+
+</div>
+
+</body>
+
+<script>
+if (localStorage.getItem("state") == "closed") // <-- this checks closed/open state and sets subnav accordingly
+$('.subnav').hide();
+
+
+$('.subnav').parent().click(function () {
+    $(this).find('#sub1').toggle(); //<-- This toggles the menu open/close
+
+    // ** Block to remeber state ** //
+    if (localStorage.getItem("state") == "open") {
+        localStorage.setItem("state", "closed"); // <-- this remembers "open" after user navigates
+    } else {
+        localStorage.setItem("state", "open"); // <-- this remembers "open" after user navigates
+    }
+    // ** Block to remeber state ** //
+});
+</script>
+</html>

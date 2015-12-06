@@ -1,0 +1,156 @@
+{% include "database_of_janacek_works/piece.html" %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+<style>
+#ex2 h1 {
+    text-align: center;
+    color: #006699;
+}
+
+#ex2 {
+    width: 30%;
+    float: left;
+    height: 500px;
+}
+
+#ex2 .subnav li{
+    direction: ltr;
+}
+
+#ex2 .subnav{
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+    direction: rtl;
+    padding-left: 5px;
+}
+
+
+#ex1 {
+    width: 70%;
+    margin: auto;
+    float: right;
+
+    {% comment %}transition: width 2s;{% endcomment %}
+}
+
+.ul_container ul{
+    list-style: none;
+}
+
+
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+::-webkit-scrollbar-thumb {
+  background: black;
+  border: 0 none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: white;
+  border: 0 none #ffffff;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+</style>
+
+
+
+
+</head>
+<body>
+
+
+<div id="ex2">
+<h1>{{ piece.cz_title }}</h1>
+
+
+<div class="ul_container">
+    <ul class="mainnav" id="nav">
+
+        <li><a href="javascript:void(0)"><h3>ALBUMS</h3></a>
+            <ul class="subnav" id="sub1">
+                {% if not piece.album_set.all %}
+                    <li>No albums</li>
+                {% else %}
+                    {% for album in piece.album_set.all %}
+                        <li><a href="/janacek/album/detail/{{ album.album_id }}">{{ album.catalogue_number }}</a></li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </li>
+
+        <li><a href="javascript:void(0)"><h3>ARRANGEMENT</h3></a>
+            <ul class="subnav" id="sub1">
+                {% if not piece.arrangement_set.all %}
+                        <li>No arrangements</li>
+                {% else %}
+                    {% for arrangement in piece.arrangement_set.all %}
+                        <li>{{ arrangement.suitable_for }} {{ arrangement.arrangemet_for }}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </li>
+
+        <li><a href="javascript:void(0)"><h3>MOVEMENTS</h3></a>
+            <ul class="subnav" id="sub1">
+                {% if not piece.piecemovement_set.all %}
+                    <li>No movements</li>
+                {% else %}
+                    {% for movement in piece.piecemovement_set.all %}
+                        <li>{{ movement.movement_order }}. {{ movement.movement_title }}</li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </li>
+
+    </ul>
+</div>
+
+</div>
+
+
+</body>
+
+<script>
+if (localStorage.getItem("state") == "closed") // <-- this checks closed/open state and sets subnav accordingly
+$('.subnav').hide();
+
+
+$('.subnav').parent().click(function () {
+    $(this).find('#sub1').toggle(); //<-- This toggles the menu open/close
+
+    // ** Block to remeber state ** //
+    if (localStorage.getItem("state") == "open") {
+        localStorage.setItem("state", "closed"); // <-- this remembers "open" after user navigates
+    } else {
+        localStorage.setItem("state", "open"); // <-- this remembers "open" after user navigates
+    }
+    // ** Block to remeber state ** //
+});
+</script>
+</html>
