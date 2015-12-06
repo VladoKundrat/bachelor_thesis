@@ -32,6 +32,9 @@ td.highlight {
     background-color: white;
     border: solid 1px;
     border-radius: 5px;
+    -webkit-box-shadow: 0 10px 5px #888888;
+    -moz-box-shadow: 0 10px 5px #888888;
+    box-shadow: 0 5px 5px #888888;
 }
 
 /*

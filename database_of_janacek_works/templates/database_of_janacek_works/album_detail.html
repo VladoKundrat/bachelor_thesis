@@ -46,30 +46,46 @@
                     <li>No tracks</li>
                 {% else %}
                     {% for piece in album.piece.all %}
-
                         <li><a href="/janacek/piece/detail/{{ piece.piece_id }}">{{ piece.cz_title}}</a></li>
+                        {% comment %}
+                        <ul>
+                            <li>Rok nahratia: {{ piece.year_of_recording }}</li>
+                            <li>Poradie tracku: {{ piece.track_order }}</li>
+                        </ul>
+                        {% endcomment %}
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </li>
+
+        <li><a href="javascript:void(0)"><h3>INFO</h3></a>
+            <ul class="subnav" id="sub1">
+
+
+                {% if not album.albumpiece_set.all %}
+                    <li>No tracks</li>
+                {% else %}
+                    {% for piece in album.albumpiece_set.all %}
+                        <li>{{ piece.piece }}</li>
+
+                        <ul>
+                            <li>Rok nahratia: {{ piece.year_of_recording }}</li>
+                            <li>Poradie tracku: {{ piece.track_order }}</li>
+                            {% comment %}{% for interpret in album %}
+                                <li>{{ interpret.interpret_name }}</li>
+                            {% endfor %}{% endcomment %}
+                        </ul>
 
                     {% endfor %}
                 {% endif %}
             </ul>
         </li>
 
-        <li><a href="javascript:void(0)"><h3>TRACKS ORDER</h3></a>
+        <li><a href="javascript:void(0)"><h3>MOVEMENTS</h3></a>
             <ul class="subnav" id="sub1">
-                {% if not album.albumpiece_set.all %}
-                    <li>No tracks</li>
-                {% else %}
-                    {% for piece in album.albumpiece_set.all %}
-                        <li>{{ piece.piece_id }}, {{ piece.track_order }}</li>
-
-
-                       {% comment %} {% for piece in album.piece.all %}
-                            {{ piece.cz_title  }}
-                        {% endfor %}{% endcomment %}
-
-
+                    {% for interpret in album.albumpiece_set.all %}
+                        <li>{{ interpret.piece.interpretpiece_set.all }}</li>
                     {% endfor %}
-                {% endif %}
             </ul>
         </li>
 

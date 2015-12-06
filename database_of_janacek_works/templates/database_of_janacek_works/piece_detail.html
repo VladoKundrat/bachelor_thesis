@@ -13,9 +13,10 @@
 }
 
 #ex2 {
-    width: 30%;
+    width: 25%;
     float: left;
     height: 500px;
+    padding-right: 10px;
 }
 
 #ex2 .subnav li{
@@ -29,8 +30,25 @@
     direction: rtl;
     padding-left: 5px;
 }
+#ex2 .mainnav a:link{
+    text-decoration: none;
+    color: #5a5a5a
+}
 
+#ex2 .mainnav a:hover{
+    color: #006699;
+}
 
+#ex2 .mainnav li h3{
+    -webkit-box-shadow: 0 10px 5px #888888;
+    -moz-box-shadow: 0 10px 5px #888888;
+    box-shadow: 0 5px 5px #888888;
+    border-radius: 4px;
+}
+
+#ex2 .mainnav{
+    padding-left: 10px;
+}
 #ex1 {
     width: 70%;
     margin: auto;
@@ -116,6 +134,18 @@
             </ul>
         </li>
 
+
+{% comment %}        <li><a href="javascript:void(0)"><h3>MOVEMENTS</h3></a>
+            <ul class="subnav" id="sub1">
+
+                    {% for interpret in piece.i %}
+                        <li>{{ movement.movement_order }}. {{ movement.movement_title }}</li>
+                    {% endfor %}
+
+            </ul>
+        </li>{% endcomment %}
+
+
         <li><a href="javascript:void(0)"><h3>MOVEMENTS</h3></a>
             <ul class="subnav" id="sub1">
                 {% if not piece.piecemovement_set.all %}
@@ -127,6 +157,19 @@
                 {% endif %}
             </ul>
         </li>
+
+{% comment %}
+
+        <li><a href="javascript:void(0)"><h3>INTERPRETS</h3></a>
+            <ul class="subnav" id="sub1">
+
+                    {% for interpret in piece.interpret_set.all %}
+                        <li>{{ interpret.interpret_name }}</li>
+                    {% endfor %}
+
+            </ul>
+        </li>
+{% endcomment %}
 
     </ul>
 </div>
