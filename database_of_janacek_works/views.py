@@ -1,7 +1,5 @@
-from django.db import connections
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response, render, get_object_or_404
-from django.template import loader, RequestContext
 from django.views import generic
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from database_of_janacek_works.models import Piece, Album, Arrangement
@@ -16,7 +14,7 @@ class IndexView(generic.ListView):
         return Piece.objects.all()
 
 
-
+#classes for detail
 
 class PieceDetailView(generic.DetailView):
     model = Piece
@@ -27,6 +25,7 @@ class AlbumDetailView(generic.DetailView):
     template_name = 'database_of_janacek_works/album_detail.html'
 
 
+#
 
 def piece(request):
     return render_to_response('database_of_janacek_works/piece.html', {})
@@ -36,6 +35,7 @@ def album(request):
 
 def arrangement(request):
     return render_to_response('database_of_janacek_works/arrangement.html', {})
+
 
 
 class PieceListJson(BaseDatatableView):

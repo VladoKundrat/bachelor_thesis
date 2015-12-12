@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>album</title>
 
 <style>
     #ex1 {
@@ -24,7 +24,7 @@
 </head>
 <body>
 <div id="ex1">
-<table id="album" class="display" cellspacing="0" width="100%" data-url="{% url 'rest_album' %}">
+<table id="album" class="row-border" cellspacing="0" width="100%" data-url="{% url 'rest_album' %}">
     <thead>
     <tr>
         <th>ID</th>
@@ -54,12 +54,12 @@
             "ajax": "{% url 'rest_album' %}",
             "pageLength": 15,
             "deferRender": true,
-{% comment %}            "columns": [
+            "columns": [
                 {"className": 'details-control'},
                 {"className": 'details-control'},
                 {"className": 'details-control'},
                 {"className": 'details-control'}
-            ],{% endcomment %}
+            ],
             "columnDefs": [
                 {
                     "targets":[4],
@@ -152,8 +152,16 @@
             var albumId = $(this).find("td:first").text();
 
             var url = '{% url 'album_detail' 999 %}'.replace (999, albumId);
-            window.location.href = url
+            {% comment %}window.location.href = url{% endcomment %}
+            $.ajax({
+                url: url,
+                success:
+                        function(data){
+                            $('body').html(data);
 
+                            console.log(data)
+                        }
+            })
         });
     });
 

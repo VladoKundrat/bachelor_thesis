@@ -1,54 +1,14 @@
-{% include "database_of_janacek_works/piece.html" %}
+{% comment %}{% include "database_of_janacek_works/piece.html" %}{% endcomment %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% comment %}<!DOCTYPE html>{% endcomment %}
+{% comment %}<html lang="en">{% endcomment %}
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>piece detail</title>
+
 
 <style>
-#ex2 h1 {
-    text-align: center;
-    color: #006699;
-}
 
-#ex2 {
-    width: 25%;
-    float: left;
-    height: 500px;
-    padding-right: 10px;
-}
-
-#ex2 .subnav li{
-    direction: ltr;
-}
-
-#ex2 .subnav{
-    max-height: 400px;
-    overflow: hidden;
-    overflow-y: auto;
-    direction: rtl;
-    padding-left: 5px;
-}
-#ex2 .mainnav a:link{
-    text-decoration: none;
-    color: #5a5a5a
-}
-
-#ex2 .mainnav a:hover{
-    color: #006699;
-}
-
-#ex2 .mainnav li h3{
-    -webkit-box-shadow: 0 10px 5px #888888;
-    -moz-box-shadow: 0 10px 5px #888888;
-    box-shadow: 0 5px 5px #888888;
-    border-radius: 4px;
-}
-
-#ex2 .mainnav{
-    padding-left: 10px;
-}
 #ex1 {
     width: 70%;
     margin: auto;
@@ -61,49 +21,12 @@
     list-style: none;
 }
 
-
-::-webkit-scrollbar {
-  width: 2px;
-  height: 2px;
-}
-::-webkit-scrollbar-button {
-  width: 0;
-  height: 0;
-}
-::-webkit-scrollbar-thumb {
-  background: black;
-  border: 0 none #ffffff;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #ffffff;
-}
-::-webkit-scrollbar-thumb:active {
-  background: #000000;
-}
-::-webkit-scrollbar-track {
-  background: white;
-  border: 0 none #ffffff;
-  border-radius: 50px;
-}
-
-::-webkit-scrollbar-track:active {
-  background: #333333;
-}
-::-webkit-scrollbar-corner {
-  background: transparent;
-}
-
 </style>
-
-
-
-
+    
 </head>
 <body>
 
 
-<div id="ex2">
 <h1>{{ piece.cz_title }}</h1>
 
 
@@ -116,7 +39,7 @@
                     <li>No albums</li>
                 {% else %}
                     {% for album in piece.album_set.all %}
-                        <li><a href="/janacek/album/detail/{{ album.album_id }}">{{ album.catalogue_number }}</a></li>
+                        <li><a href="/janacek/album/detail/{{ album.album_id }}">{{ album.label_name }} {{ album.catalogue_number }}</a></li>
                     {% endfor %}
                 {% endif %}
             </ul>
@@ -174,14 +97,15 @@
     </ul>
 </div>
 
-</div>
+
+
 
 
 </body>
 
 <script>
 if (localStorage.getItem("state") == "closed") // <-- this checks closed/open state and sets subnav accordingly
-$('.subnav').hide();
+$('.subnav').show();
 
 
 $('.subnav').parent().click(function () {
@@ -196,4 +120,6 @@ $('.subnav').parent().click(function () {
     // ** Block to remeber state ** //
 });
 </script>
-</html>
+
+{% comment %}
+</html>{% endcomment %}

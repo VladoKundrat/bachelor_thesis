@@ -37,66 +37,99 @@ td.highlight {
     box-shadow: 0 5px 5px #888888;
 }
 
-/*
-ul.tabs
-{
-    padding: 6px 10px;
-    font-size: 0;
-    margin:0;
-    list-style-type: none;
-    text-align: center; /!*set to left, center, or right to align the tabs as desired*!/
+.highlight {
+    background-color: red;
 }
 
-ul.tabs li
-{
-    display: inline;
-    margin: 0;
-    margin-right:4px; /!*distance between tabs*!/
+#ex1 tbody tr:hover{
+    background-color: #F0F0F0;
 }
 
-ul.tabs li a
-{
-    font: normal 12px Verdana;
+.active{
+    background-color: red;
+}
+
+#ex2 h1 {
+    text-align: center;
+    color: #006699;
+}
+
+#ex2 {
+    width: 25%;
+    float: left;
+    height: 500px;
+    padding-right: 10px;
+}
+
+#ex2 .subnav li{
+    direction: ltr;
+}
+
+#ex2 .subnav{
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+    direction: rtl;
+    padding-left: 5px;
+}
+
+#ex2 .mainnav li h3{
+    font-size: 25px;
+    -webkit-box-shadow: 0 10px 5px #888888;
+    -moz-box-shadow: 0 10px 5px #888888;
+    box-shadow: 0 5px 5px #888888;
+    border-radius: 4px;
     text-decoration: none;
-    position: relative;
-    padding: 6px 14px;
-    border: 1px solid #B7B7B7;
-    color: #5a5a5a;;
-    background: #F7F7F7;
-    border-radius: 5px 5px 0 0;
-    outline:none;
-    text-transform: uppercase;
+    color: #006699;
 }
 
-ul.tabs li a:visited
-{
-    color: #000;
+.subnav li {
+    font-size: 20px;
 }
 
-ul.tabs li a:hover
-{
-    background: white;
-}
 
-ul.tabs li.selected a, ul.tabs li.selected a:hover
-{
-    position: relative;
-    top: 0;
-    font-weight:bold;
-    background: white;
-    border-bottom-color: white;
-}
-
-ul.tabs li.selected a:hover
-{
+.subnav li a{
+    color: #006699;
     text-decoration: none;
 }
 
-#ex1
-{
-    border-top: 1px solid #B7B7B7; padding:30px 16px;
+
+.subnav li a:hover {
+    background-color: #F0F0F0;
 }
 
-ul.tabs li:target{
-    background-color: yellow;
-}*/
+#ex2 .mainnav{
+    padding-left: 10px;
+}
+
+#ex2 ::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+#ex2 ::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+#ex2 ::-webkit-scrollbar-thumb {
+  background: black;
+  border: 0 none #ffffff;
+  border-radius: 50px;
+}
+#ex2 ::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+#ex2 ::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+#ex2 ::-webkit-scrollbar-track {
+  background: white;
+  border: 0 none #ffffff;
+  border-radius: 50px;
+}
+
+#ex2 ::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+#ex2 ::-webkit-scrollbar-corner {
+  background: transparent;
+}

@@ -4,18 +4,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>albumdetail</title>
 
 <style>
-#ex2 h1 {
-    text-align: center;
-    color: #006699;
-}
 
-#ex2 {
-    width: 30%;
-    float: left;
-}
 
 #ex1 {
     width: 70%;
@@ -40,25 +32,8 @@
 <div class="ul_container">
     <ul class="mainnav" id="nav" style="list-style:none;">
 
-        <li><a href="javascript:void(0)"><h3>TRACKS</h3></a>
-            <ul class="subnav" id="sub1">
-                {% if not album.piece.all %}
-                    <li>No tracks</li>
-                {% else %}
-                    {% for piece in album.piece.all %}
-                        <li><a href="/janacek/piece/detail/{{ piece.piece_id }}">{{ piece.cz_title}}</a></li>
-                        {% comment %}
-                        <ul>
-                            <li>Rok nahratia: {{ piece.year_of_recording }}</li>
-                            <li>Poradie tracku: {{ piece.track_order }}</li>
-                        </ul>
-                        {% endcomment %}
-                    {% endfor %}
-                {% endif %}
-            </ul>
-        </li>
 
-        <li><a href="javascript:void(0)"><h3>INFO</h3></a>
+        <li><a href="javascript:void(0)"><h3>PIECE</h3></a>
             <ul class="subnav" id="sub1">
 
 
@@ -66,8 +41,8 @@
                     <li>No tracks</li>
                 {% else %}
                     {% for piece in album.albumpiece_set.all %}
-                        <li>{{ piece.piece }}</li>
-
+                        <li><a href="/janacek/piece/detail/{{ piece.piece_id }}">{{ piece.piece}}</a></li>
+                        <p></p>
                         <ul>
                             <li>Rok nahratia: {{ piece.year_of_recording }}</li>
                             <li>Poradie tracku: {{ piece.track_order }}</li>
@@ -75,19 +50,20 @@
                                 <li>{{ interpret.interpret_name }}</li>
                             {% endfor %}{% endcomment %}
                         </ul>
+                        <p></p>
 
                     {% endfor %}
                 {% endif %}
             </ul>
         </li>
 
-        <li><a href="javascript:void(0)"><h3>MOVEMENTS</h3></a>
+{% comment %}        <li><a href="javascript:void(0)"><h3>MOVEMENTS</h3></a>
             <ul class="subnav" id="sub1">
                     {% for interpret in album.albumpiece_set.all %}
-                        <li>{{ interpret.piece.interpretpiece_set.all }}</li>
+                        <li>{{ interpret.piece }}</li>
                     {% endfor %}
             </ul>
-        </li>
+        </li>{% endcomment %}
 
         <li><a href="javascript:void(0)"><h3>COMPOSER</h3></a>
             <ul class="subnav" id="sub1">
@@ -126,4 +102,5 @@ $('.subnav').parent().click(function () {
     // ** Block to remeber state ** //
 });
 </script>
+
 </html>

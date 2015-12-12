@@ -1,28 +1,53 @@
 {% load static %}
-{% include "database_of_janacek_works/main_menu.html" %}
+
 
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>piece</title>
+
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/1.10.10/api/page.jumpToData().js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/1.1.0/css/buttons.dataTables.min.css">
+
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/buttons/1.1.0/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/buttons/1.1.0/js/buttons.colVis.min.js"></script>
 
 <style>
     #ex1 {
-
     margin: auto;
-    {% comment %}float: right;{% endcomment %}
-    {% comment %}transition: width 2s;{% endcomment %}
+
     }
 
-{% comment %}#ex1.clicked {
-    width: 70%;
-    border: 3px solid red;
-}{% endcomment %}
 
 </style>
 </head>
 <body>
+
+<div class="header">
+    <h1>Leoš Janáček works database</h1>
+</div>
+
+<div class="nav">
+    <ul>
+        <li><a href='/janacek/piece' class="selected">Piece</a></li>
+        <li><a href="/janacek/album/">Albums</a></li>
+        <li><a href="/janacek/album/">Arrangements</a></li>
+    </ul>
+</div>
+
 <div id="ex1">
     <table id="piece" class="row-border" cellspacing="0" width="100%" data-url="{% url 'rest_piece' %}">
         <thead>
@@ -54,6 +79,10 @@
 <button class="btn1">Hide</button>
 <button class="show">Show</button>
 
+<div id="ex2">
+
+</div>
+
 </body>
 
 <script  type="text/javascript">
@@ -83,40 +112,19 @@
             //"stateSave": true,
             "ajax": "{% url 'rest_piece' %}",
             "columns": [
-            {
-                "className": 'details-control'
-            },
-            {}, {}, {}, {},{},{},{},{},{}
-        ],
-            {% comment %}
-           "columnDefs": [
-                {
-                    "targets":[3],
-                    "visible": false
-                },
-                {
-                    "targets":[4],
-                    "visible": false
-                },
-                {
-                    "targets":[5],
-                    "visible": false
-                },
-                {
-                    "targets":[6],
-                    "visible": false
-                },
-                {
-                    "targets":[7],
-                    "visible": false
-                },
-                {
-                    "targets":[8],
-                    "visible": false
-                }
-            ]{% endcomment %}
-
+            {"className": 'details-control'},
+            {"className": 'details-control'},
+            {"className": 'details-control'},
+            {"className": 'details-control'},
+            {"className": 'details-control'},
+            {"className": 'details-control'},
+            {"className": 'details-control'},
+            {"className": 'details-control'},
+            {"className": 'details-control'},
+            {"className": 'details-control'}
+            ]
         });
+        {% comment %}table.page.jumpToData( "Idyla", 1 ){% endcomment %}
     });
 </script>
 
@@ -124,32 +132,37 @@
 
     $(document).ready(function() {
         $('#piece tbody').on('click', 'tr', function () {
-            //$("#ex1").width("70%");
-            //alert("70%");
             var pieceId = $(this).find("td:first").text();
-
             var url = '{% url 'piece_detail' 999 %}'.replace (999, pieceId);
-            window.location.href = url
 
+            $.ajax({
+                url: url,
+                success:
+                        function(data){
+                            $("#ex2").html(data);
+
+                            console.log(data)
+                        }
+            })
         });
     });
 
 
 
-$(document).ready(function(){
 
-    $(".btn1").click(function(){
-        $("#ex2").hide();
-        $("#ex1").width("100%")
+    $(document).ready(function(){
+
+        $(".btn1").click(function(){
+            $("#ex2").hide();
+            $("#ex1").width("100%")
+        });
+        $(".show").click(function(){
+            $("#ex2").show();
+            $("#ex1").width("70%")
+        });
     });
-    $(".show").click(function(){
-        $("#ex2").show();
-        $("#ex1").width("70%")
-    });
-});
 
 </script>
-
 
 
 
