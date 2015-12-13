@@ -14,18 +14,7 @@
     }
 
 
-.btn1 {
-   {% comment %} background-image: url("https://cdn1.iconfinder.com/data/icons/nuove/128x128/actions/fileclose.png");{% endcomment %}
-    background-color: white;
-	cursor:pointer;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #006699;
-    border-radius: 4px;
-    display: none;
-}
+
 
 #ex2{
     display: none;
@@ -33,6 +22,14 @@
 </style>
 </head>
 <body>
+
+<div class="nav">
+    <ul>
+        <li><a href='/janacek/piece' class="selected">Piece</a></li>
+        <li><a href="/janacek/album/">Albums</a></li>
+        {% comment %}<li><a href="/janacek/arrangement/">Arrangements</a></li>{% endcomment %}
+    </ul>
+</div>
 
 <div id="ex1">
     <table id="piece" class="row-border" cellspacing="0" width="100%" data-url="{% url 'rest_piece' %}">
@@ -117,38 +114,12 @@
         {% comment %}table.page.jumpToData( "Idyla", 1 ){% endcomment %}
     });
 </script>
-
 <script>
-
-    $(document).ready(function() {
-        $('#piece tbody').on('click', 'tr', function () {
-            var pieceId = $(this).find("td:first").text();
-            var url = '{% url 'piece_detail' 999 %}'.replace (999, pieceId);
-
-            $.ajax({
-                url: url,
-                success:
-                        function(data){
-                            $("#ex1").width("70%");
-                            $(".btn1").show();
-                            $("#ex2").show();
-                            $("#ex2").html(data);
-
-                            //console.log(data)
-                        }
-            })
-        });
-    });
-
-    $(".btn1").click(function(){
+$(".btn1").click(function(){
        $("#ex2").hide();
        $("#ex1").width("100%");
        $(".btn1").hide();
 
-    });
-
-
-
+});
 </script>
-
 </html>

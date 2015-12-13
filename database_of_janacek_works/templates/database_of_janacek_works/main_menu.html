@@ -34,13 +34,6 @@
     <h1>Leoš Janáček works database</h1>
 </div>
 
-<div class="nav">
-    <ul>
-        <li><a href='/janacek/piece' class="selected">Piece</a></li>
-        <li><a href="/janacek/album/">Albums</a></li>
-        <li><a href="/janacek/arrangement/">Arrangements</a></li>
-    </ul>
-</div>
 </body>
 
 <script>
@@ -72,6 +65,56 @@
             })
 
     }
+
+
+    $(document).ready(function() {
+
+        if(window.location.href.indexOf("piece") > -1){
+
+        $('#piece tbody').on('click', 'tr', function () {
+            var pieceId = $(this).find("td:first").text();
+            var url = '{% url 'piece_detail' 999 %}'.replace (999, pieceId);
+
+            $.ajax({
+                url: url,
+                success:
+                        function(data){
+                            $("#ex1").width("70%");
+                            $(".btn1").show();
+                            $("#ex2").show();
+                            $("#ex2").html(data);
+
+                            //console.log(data)
+                        }
+            })
+        });
+        }
+        else if (window.location.href.indexOf("album") > -1){
+            $('#album tbody').on('click', 'tr', function () {
+            var albumId = $(this).find("td:first").text();
+            var url = '{% url 'album_detail' 999 %}'.replace (999, albumId);
+
+            $.ajax({
+                url: url,
+                success:
+                        function(data){
+                            $("#ex1").width("70%");
+                            $(".btn1").show();
+                            $("#ex2").show();
+                            $("#ex2").html(data);
+
+                            //console.log(data)
+                        }
+            })
+        });
+        }
+    });
+
+
+
+
+
 </script>
+
 
 </html>

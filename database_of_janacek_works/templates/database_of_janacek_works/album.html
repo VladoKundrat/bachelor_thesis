@@ -23,6 +23,15 @@
 
 </head>
 <body>
+
+<div class="nav">
+    <ul>
+        <li><a href='/janacek/piece'>Piece</a></li>
+        <li><a href='/janacek/album/' class="selected">Albums</a></li>
+        {% comment %}<li><a href="/janacek/arrangement/">Arrangements</a></li>{% endcomment %}
+    </ul>
+</div>
+
 <div id="ex1">
 <table id="album" class="row-border" cellspacing="0" width="100%" data-url="{% url 'rest_album' %}">
     <thead>
@@ -67,6 +76,9 @@
 
 </div>
 
+<button class="btn1">X</button>
+
+</body>
 <script type="text/javascript">
 
     $(document).ready(function() {
@@ -197,39 +209,14 @@
 </script>
 
 <script>
+$(".btn1").click(function(){
+       $("#ex2").hide();
+       $("#ex1").width("100%");
+       $(".btn1").hide();
 
-    $(document).ready(function() {
-        $('#album tbody').on('click', 'tr', function () {
-            //$("#ex1").width("70%");
-            //alert("70%");
-            var albumId = $(this).find("td:first").text();
-
-            var url = '{% url 'album_detail' 999 %}'.replace (999, albumId);
-            {% comment %}window.location.href = url{% endcomment %}
-            $.ajax({
-                url: url,
-                success:
-                        function(data){
-                            $('#ex2').html(data);
-
-                            console.log(data)
-                        }
-            })
-        });
-    });
-
-
-
-$(document).ready(function(){
-
-    $(".btn1").click(function(){
-        $("#ex2").hide();
-        $("#ex1").width("100%")
-    });
 });
-
 </script>
 
 
-</body>
+
 </html>

@@ -1,3 +1,16 @@
+.btn1 {
+    /*background-image: url("https://cdn1.iconfinder.com/data/icons/nuove/128x128/actions/fileclose.png");*/
+    background-color: white;
+	cursor:pointer;
+    width: 28px;
+    height: 28px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #006699;
+    border-radius: 5px;
+    display: none;
+}
+
 
 .nav {
     padding: 10px 10px 20px 10px;
@@ -10,12 +23,16 @@
 
 .nav a {
   color: #5a5a5a;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: bold;
   padding: 1px 10px;
   text-transform: uppercase;
 }
 
+
+.nav a.selected {
+    color: #006699;
+}
 
 td.details-control {
     cursor: pointer;
@@ -50,6 +67,7 @@ td.highlight {
 .active{
     background-color: red;
 }
+
 
 #ex2 h1 {
     text-align: center;
