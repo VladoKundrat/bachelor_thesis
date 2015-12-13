@@ -22,8 +22,14 @@
     height: 30px;
     font-size: 20px;
     font-weight: bold;
+    color: #006699;
+    border-radius: 4px;
+    display: none;
 }
-    
+
+#ex2{
+    display: none;
+}
 </style>
 </head>
 <body>
@@ -61,6 +67,9 @@
 <div id="ex2">
 
 </div>
+
+<button class="btn1">X</button>
+
 
 </body>
 
@@ -120,28 +129,25 @@
                 url: url,
                 success:
                         function(data){
+                            $("#ex1").width("70%");
+                            $(".btn1").show();
+                            $("#ex2").show();
                             $("#ex2").html(data);
 
-                            console.log(data)
+                            //console.log(data)
                         }
             })
         });
     });
 
+    $(".btn1").click(function(){
+       $("#ex2").hide();
+       $("#ex1").width("100%");
+       $(".btn1").hide();
 
-
-
-    $(document).ready(function(){
-
-        $(".btn1").click(function(){
-            $("#ex2").hide();
-            $("#ex1").width("100%")
-        });
-        $(".show").click(function(){
-            $("#ex2").show();
-            $("#ex1").width("70%")
-        });
     });
+
+
 
 </script>
 
