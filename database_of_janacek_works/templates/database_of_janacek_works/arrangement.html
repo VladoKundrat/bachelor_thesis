@@ -11,6 +11,9 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.1.0/css/select.dataTables.min.css">
 
+
+
+
 </head>
 <body>
 <table id="arrangement" class="hover" cellspacing="0" width="100%" data-url="{% url 'rest_arrangement' %}">
@@ -54,7 +57,7 @@
     $(document).ready(function() {
 
         var table = $('#arrangement').DataTable( {
-
+            "pagingType": "input",
             deferRender: true,
             "processing": true,
             "serverSide": true,

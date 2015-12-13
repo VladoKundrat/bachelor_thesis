@@ -1,3 +1,7 @@
+body{
+    background-color: #F0F0F0;
+}
+
 .nav {
     padding: 10px 10px 20px 10px;
     text-align: center;
@@ -14,6 +18,7 @@
   padding: 1px 10px;
   text-transform: uppercase;
 }
+
 
 td.details-control {
     cursor: pointer;
@@ -57,8 +62,10 @@ td.highlight {
 #ex2 {
     width: 25%;
     float: left;
-    height: 500px;
     padding-right: 10px;
+    background-color: white;
+    height: auto;
+
 }
 
 #ex2 .subnav li{
@@ -83,19 +90,19 @@ td.highlight {
     color: #006699;
 }
 
-.subnav li {
-    font-size: 20px;
+.mainnav li a {
+    text-decoration: none;
 }
 
-
 .subnav li a{
+    font-size: 20px;
     color: #006699;
-    text-decoration: none;
 }
 
 
 .subnav li a:hover {
     background-color: #F0F0F0;
+    cursor: pointer;
 }
 
 #ex2 .mainnav{

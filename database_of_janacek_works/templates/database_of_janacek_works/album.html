@@ -31,6 +31,25 @@
         <th>LABEL NAME</th>
         <th>CATALOGUE NUMBER</th>
         <th>ALBUM NAME</th>
+        <th>album_published_year</th>
+        <th>published_country</th>
+        <th>number_of_media</th>
+        <th>recording_technology</th>
+        <th>diameter</th>
+        <th>rpm</th>
+        <th>region_code</th>
+        <th>side_coumpling</th>
+        <th>tv_system</th>
+        <th>sound_system</th>
+        <th>medium_type</th>
+        <th>subtitles</th>
+        <th>comment</th>
+        <th>text_language</th>
+        <th>text_by</th>
+        <th>note_language</th>
+        <th>note_by</th>
+        <th>libretto_language</th>
+        <th>libretto_by</th>
     </tr>
     </thead>
     <tbody>
@@ -52,19 +71,17 @@
 
     $(document).ready(function() {
         var table = $('#album').DataTable( {
-            "processing": true,
-            "serverSide": true,
-            "dataType": "json",
-            "ajax": "{% url 'rest_album' %}",
-            "pageLength": 15,
-            "deferRender": true,
-            "columns": [
-                {"className": 'details-control'},
-                {"className": 'details-control'},
-                {"className": 'details-control'},
-                {"className": 'details-control'}
+            select: true,
+            dom: 'fBrtip',
+            //stateSave: true,
+            buttons: [
+                {
+                    extend: 'colvis',
+                    postfixButtons: [ 'colvisRestore' ],
+                    columns: ':not(:first-child)'
+                }
             ],
-            "columnDefs": [
+            columnDefs: [
                 {
                     "targets":[4],
                     "visible": false
@@ -141,6 +158,38 @@
                     "targets":[22],
                     "visible": false
                 }
+            ],
+            "pagingType": "input",
+            "processing": true,
+            "serverSide": true,
+            "dataType": "json",
+            "ajax": "{% url 'rest_album' %}",
+            "pageLength": 15,
+            "deferRender": true,
+            "columns": [
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'},
+                {"className": 'details-control'}
             ]
         });
         });

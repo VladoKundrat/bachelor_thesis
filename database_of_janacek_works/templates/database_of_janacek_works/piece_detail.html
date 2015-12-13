@@ -27,6 +27,9 @@
 <body>
 
 
+<button class="btn1">X</button>
+<button class="show">Show</button>
+
 <h1>{{ piece.cz_title }}</h1>
 
 
@@ -39,8 +42,7 @@
                     <li>No albums</li>
                 {% else %}
                     {% for album in piece.album_set.all %}
-                        <li class="album_id_{{ album.album_id }}" onclick="classFunction(this.className)">{{ album.label_name }} {{ album.catalogue_number }}</li>
-
+                        <li class="album_id_{{ album.album_id }}" onclick="classFunction(this.className)"><a>{{ album.label_name }} {{ album.catalogue_number }}</a></li>
                     {% endfor %}
                 {% endif %}
             </ul>
@@ -109,7 +111,7 @@ if (localStorage.getItem("state") == "closed") // <-- this checks closed/open st
 $('.subnav').show();
 
 
-{% comment %}$('.subnav').parent().click(function () {
+$('.subnav').parent().click(function () {
     $(this).find('#sub1').toggle(); //<-- This toggles the menu open/close
 
     // ** Block to remeber state ** //
@@ -119,7 +121,7 @@ $('.subnav').show();
         localStorage.setItem("state", "open"); // <-- this remembers "open" after user navigates
     }
     // ** Block to remeber state ** //
-});{% endcomment %}
+});
 </script>
 
 

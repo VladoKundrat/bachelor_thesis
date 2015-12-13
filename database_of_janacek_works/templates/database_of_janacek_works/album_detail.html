@@ -41,7 +41,8 @@
                     <li>No tracks</li>
                 {% else %}
                     {% for piece in album.albumpiece_set.all %}
-                        <li><a href="/janacek/piece/detail/{{ piece.piece_id }}">{{ piece.piece}}</a></li>
+                        <li class="piece_id_{{ piece.piece_id }}" onclick="classFunction(this.className)"><a>{{ piece.piece }}</a></li>
+
                         <p></p>
                         <ul>
                             <li>Rok nahratia: {{ piece.year_of_recording }}</li>
