@@ -7,13 +7,16 @@
     <meta charset="UTF-8">
     <title></title>
 
-    {% comment %}<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/1.10.10/api/page.jumpToData().js"></script>{% endcomment %}
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/select/1.1.0/js/dataTables.select.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.1.0/css/select.dataTables.min.css">
 
 </head>
 <body>
 <table id="arrangement" class="hover" cellspacing="0" width="100%" data-url="{% url 'rest_arrangement' %}">
     <thead>
     <tr>
+        <th>id</th>
         <th>suitable_for</th>
         <th>arrangemet_for</th>
         <th>arrangemet_by</th>
@@ -35,7 +38,7 @@
 
 <script  type="text/javascript">
 
-jQuery.fn.dataTable.Api.register( 'page.jumpToData()', function ( data, column ) {
+{% comment %}jQuery.fn.dataTable.Api.register( 'page.jumpToData()', function ( data, column ) {
 	var pos = this.column(column, {order:'current'}).data().indexOf( data );
 
 	if ( pos >= 0 ) {
@@ -44,21 +47,28 @@ jQuery.fn.dataTable.Api.register( 'page.jumpToData()', function ( data, column )
 	}
 
 	return this;
-    } );
+    } );{% endcomment %}
 
 
 
     $(document).ready(function() {
+
         var table = $('#arrangement').DataTable( {
+
+            deferRender: true,
             "processing": true,
             "serverSide": true,
             "dataType": "json",
             "pageLength": 20,
-            //"stateSave": true,
+            //"displayStart": 50,
+            "stateSave": true,
             "ajax": "{% url 'rest_arrangement' %}",
             "columns": [
-                {}, {}, {}, {}
+                {data: [0]}, {data: [1]}, {data: [2]}, {data: [3]},{data: [4]}
             ],
+
+            rowId: [0],
+            select: true
             {% comment %}"oSearch": {"sSearch": "orchestra"}{% endcomment %}
             {% comment %},
             "columnDefs":
@@ -87,9 +97,21 @@ jQuery.fn.dataTable.Api.register( 'page.jumpToData()', function ( data, column )
                     "visible": false
                 }
             ]{% endcomment %}
+
+
         });
 
-        table.page.jumpToData(  "Rolf Smedwig", 2  )
+        {% comment %}table.page.jumpToData(  "Rolf Smedwig", 2  ){% endcomment %}
+        {% comment %}table.fnDisplayRow( table.fnGetNodes()[30] );{% endcomment %}
+
+{% comment %}        $('#arrangement').on( 'click', 'tr', function () {
+            //var id = table.row( this ).data();
+            var id = $(this).find("td:first").text();
+
+            alert( 'Clicked row id '+id );
+        } );{% endcomment %}
+
+
     });
   </script>
 

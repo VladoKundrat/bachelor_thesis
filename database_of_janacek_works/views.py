@@ -76,9 +76,9 @@ class ArrangementListJson(BaseDatatableView):
 
     model = Arrangement
 
-    columns = ['suitable_for', 'arrangemet_for', 'arrangemet_by', 'perfomr_by']
+    columns = ['arrangement_id', 'suitable_for', 'arrangemet_for', 'arrangemet_by', 'perfomr_by']
 
-    order_columns = ['suitable_for', 'arrangemet_for', 'arrangemet_by', 'perfomr_by']
+    order_columns = ['arrangement_id', 'suitable_for', 'arrangemet_for', 'arrangemet_by', 'perfomr_by']
 
     max_display_length = 500
 

@@ -22,6 +22,10 @@
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/buttons/1.1.0/js/buttons.colVis.min.js"></script>
 
 
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/select/1.1.0/js/dataTables.select.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.1.0/css/select.dataTables.min.css">
+
 </head>
 <body>
 
@@ -31,10 +35,36 @@
 
 <div class="nav">
     <ul>
-        <li><a href='/janacek/piece' class="selected">Piece</a></li>
+        <li><a href='/janacek/piece' class="selected" onclick="classFunction(this.className)">Piece</a></li>
         <li><a href="/janacek/album/">Albums</a></li>
-        <li><a href="/janacek/album/">Arrangements</a></li>
+        <li><a href="/janacek/arrangement/">Arrangements</a></li>
     </ul>
 </div>
 </body>
+
+<script>
+
+    function classFunction(elm) {
+        alert(elm);
+        //var class_name = $(this).attr('class');
+        //alert(class_name);
+        if (elm.indexOf("album") > -1){
+                var n = elm.lastIndexOf('_');
+                var albumId = elm.substring(n + 1);
+
+                var url = '{% url 'album_detail' 999 %}'.replace (999, albumId);
+            }
+            $.ajax({
+                url: url,
+                success:
+                        function(data){
+                            $("#ex2").html(data);
+
+                            console.log(data)
+                        }
+            })
+
+    }
+</script>
+
 </html>

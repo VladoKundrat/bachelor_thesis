@@ -1,7 +1,7 @@
 {% comment %}{% include "database_of_janacek_works/piece.html" %}{% endcomment %}
 
-{% comment %}<!DOCTYPE html>{% endcomment %}
-{% comment %}<html lang="en">{% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>piece detail</title>
@@ -22,7 +22,7 @@
 }
 
 </style>
-    
+
 </head>
 <body>
 
@@ -39,7 +39,8 @@
                     <li>No albums</li>
                 {% else %}
                     {% for album in piece.album_set.all %}
-                        <li><a href="/janacek/album/detail/{{ album.album_id }}">{{ album.label_name }} {{ album.catalogue_number }}</a></li>
+                        <li class="album_id_{{ album.album_id }}" onclick="classFunction(this.className)">{{ album.label_name }} {{ album.catalogue_number }}</li>
+
                     {% endfor %}
                 {% endif %}
             </ul>
@@ -108,7 +109,7 @@ if (localStorage.getItem("state") == "closed") // <-- this checks closed/open st
 $('.subnav').show();
 
 
-$('.subnav').parent().click(function () {
+{% comment %}$('.subnav').parent().click(function () {
     $(this).find('#sub1').toggle(); //<-- This toggles the menu open/close
 
     // ** Block to remeber state ** //
@@ -118,8 +119,12 @@ $('.subnav').parent().click(function () {
         localStorage.setItem("state", "open"); // <-- this remembers "open" after user navigates
     }
     // ** Block to remeber state ** //
-});
+});{% endcomment %}
 </script>
+
+
+
+
 
 {% comment %}
 </html>{% endcomment %}

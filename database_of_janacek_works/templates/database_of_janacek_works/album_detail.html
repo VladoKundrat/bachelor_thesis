@@ -1,4 +1,4 @@
-{% include "database_of_janacek_works/album.html" %}
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,7 @@
 </head>
 <body>
 
-<div id="ex2">
+
 <h1>{{ album.label_name }} - {{ album.catalogue_number }}</h1>
 
 
@@ -81,13 +81,13 @@
 </div>
 
 
-</div>
+
 
 </body>
 
 <script>
 if (localStorage.getItem("state") == "closed") // <-- this checks closed/open state and sets subnav accordingly
-$('.subnav').hide();
+$('.subnav').show();
 
 
 $('.subnav').parent().click(function () {

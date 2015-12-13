@@ -1,29 +1,11 @@
 {% load static %}
-
+{% include "database_of_janacek_works/main_menu.html" %}
 
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>piece</title>
-
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/1.10.10/api/page.jumpToData().js"></script>
-
-
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
-
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/1.1.0/css/buttons.dataTables.min.css">
-
-    <!-- jQuery -->
-    <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-
-
-    <!-- DataTables -->
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/buttons/1.1.0/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/buttons/1.1.0/js/buttons.colVis.min.js"></script>
 
 <style>
     #ex1 {
@@ -35,18 +17,6 @@
 </style>
 </head>
 <body>
-
-<div class="header">
-    <h1>Leoš Janáček works database</h1>
-</div>
-
-<div class="nav">
-    <ul>
-        <li><a href='/janacek/piece' class="selected">Piece</a></li>
-        <li><a href="/janacek/album/">Albums</a></li>
-        <li><a href="/janacek/album/">Arrangements</a></li>
-    </ul>
-</div>
 
 <div id="ex1">
     <table id="piece" class="row-border" cellspacing="0" width="100%" data-url="{% url 'rest_piece' %}">
@@ -89,6 +59,7 @@
 
    $(document).ready(function() {
         var table = $('#piece').DataTable( {
+            select: true,
             dom: 'lfBrtip',
             stateSave: true,
             buttons: [
@@ -122,7 +93,8 @@
             {"className": 'details-control'},
             {"className": 'details-control'},
             {"className": 'details-control'}
-            ]
+            ],
+
         });
         {% comment %}table.page.jumpToData( "Idyla", 1 ){% endcomment %}
     });
@@ -164,6 +136,32 @@
 
 </script>
 
+{% comment %}<script>
 
+
+            $('li').on('click', function () {
+
+            var class_name = $(this).attr('class');
+                alert(class_name);
+
+            if (class_name.indexOf("album") > -1){
+                var n = class_name.lastIndexOf('_');
+                var albumId = class_name.substring(n + 1);
+
+                var url = '{% url 'album_detail' 999 %}'.replace (999, albumId);
+            }
+            $.ajax({
+                url: url,
+                success:
+                        function(data){
+                            $("#ex2").html(data);
+
+                            console.log(data)
+                        }
+            })
+        });
+
+
+</script>{% endcomment %}
 
 </html>
