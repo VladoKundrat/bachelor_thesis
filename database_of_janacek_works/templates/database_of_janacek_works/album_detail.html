@@ -1,30 +1,16 @@
-
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <title>albumdetail</title>
 
-<style>
-
-
-#ex1 {
-    width: 70%;
-    margin: auto;
-    float: right;
-
-    {% comment %}transition: width 2s;{% endcomment %}
-}
-
-.ul_container ul{
-    list-style: none;
-}
-</style>
+    <style> #table_style { float: right; } </style>
 
 </head>
 <body>
-
 
 <h1>{{ album.label_name }} - {{ album.catalogue_number }}</h1>
 
@@ -32,39 +18,23 @@
 <div class="ul_container">
     <ul class="mainnav" id="nav" style="list-style:none;">
 
-
         <li><a href="javascript:void(0)"><h3>PIECE</h3></a>
             <ul class="subnav" id="sub1">
-
-
                 {% if not album.albumpiece_set.all %}
                     <li>No tracks</li>
                 {% else %}
                     {% for piece in album.albumpiece_set.all %}
                         <li class="piece_id_{{ piece.piece_id }}" onclick="classFunction(this.className)"><a>{{ piece.piece }}</a></li>
-
                         <p></p>
                         <ul>
                             <li>Rok nahratia: {{ piece.year_of_recording }}</li>
                             <li>Poradie tracku: {{ piece.track_order }}</li>
-                            {% comment %}{% for interpret in album %}
-                                <li>{{ interpret.interpret_name }}</li>
-                            {% endfor %}{% endcomment %}
                         </ul>
                         <p></p>
-
                     {% endfor %}
                 {% endif %}
             </ul>
         </li>
-
-{% comment %}        <li><a href="javascript:void(0)"><h3>MOVEMENTS</h3></a>
-            <ul class="subnav" id="sub1">
-                    {% for interpret in album.albumpiece_set.all %}
-                        <li>{{ interpret.piece }}</li>
-                    {% endfor %}
-            </ul>
-        </li>{% endcomment %}
 
         <li><a href="javascript:void(0)"><h3>COMPOSER</h3></a>
             <ul class="subnav" id="sub1">
@@ -81,27 +51,22 @@
     </ul>
 </div>
 
-
-
-
-</body>
-
 <script>
-if (localStorage.getItem("state") == "closed") // <-- this checks closed/open state and sets subnav accordingly
-$('.subnav').show();
+    if (localStorage.getItem("state") == "closed") // this checks closed/open state and sets subnav accordingly
+    $('.subnav').show();
 
 
-$('.subnav').parent().click(function () {
-    $(this).find('#sub1').toggle(); //<-- This toggles the menu open/close
+    $('.subnav').parent().click(function () {
+        $(this).find('#sub1').toggle(); // This toggles the menu open/close
 
-    // ** Block to remeber state ** //
-    if (localStorage.getItem("state") == "open") {
-        localStorage.setItem("state", "closed"); // <-- this remembers "open" after user navigates
-    } else {
-        localStorage.setItem("state", "open"); // <-- this remembers "open" after user navigates
-    }
-    // ** Block to remeber state ** //
-});
+        // ** Block to remeber state ** //
+        if (localStorage.getItem("state") == "open") {
+            localStorage.setItem("state", "closed"); // this remembers "open" after user navigates
+        } else {
+            localStorage.setItem("state", "open"); // this remembers "open" after user navigates
+        }
+    });
 </script>
 
+</body>
 </html>

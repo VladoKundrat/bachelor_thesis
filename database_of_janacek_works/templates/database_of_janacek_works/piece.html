@@ -3,26 +3,13 @@
 
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/html">
+
 <head>
     <meta charset="UTF-8">
-    <title>piece</title>
-
-<style>
-    #ex1 {
-    margin: auto;
-
-    }
-
-
-
-
-#ex2{
-    display: none;
-}
-</style>
+    <title>Piece</title>
 </head>
-<body>
 
+<body>
 <div class="nav">
     <ul>
         <li><a href='/janacek/piece' class="selected">Piece</a></li>
@@ -31,7 +18,9 @@
     </ul>
 </div>
 
-<div id="ex1">
+
+{% comment %}definition of table for DataTables{% endcomment %}
+<div id="table_style">
     <table id="piece" class="row-border" cellspacing="0" width="100%" data-url="{% url 'rest_piece' %}">
         <thead>
             <tr>
@@ -47,79 +36,24 @@
                 <th>wiki</th>
             </tr>
         </thead>
-    <tbody>
-
-    </tbody>
-    <tfoot>
-    <tr>
-
-    </tr>
-    </tfoot>
-</table>
-
+        <tbody></tbody>
+    </table>
 </div>
 
+<div id="detail_style"></div>
 
+<button class="hide_button"> < </button>
 
-<div id="ex2">
+<script src="{% static "database_of_janacek_works/js/app.js" %}" type="text/javascript"></script>
 
-</div>
+<script>
+    $(".hide_button").click(function(){
+        $("#detail_style").hide();
+        $("#table_style").width("99%");
+        $(".hide_button").hide();
 
-<button class="btn1">X</button>
-
-
-</body>
-
-<script  type="text/javascript">
-
-   $(document).ready(function() {
-        var table = $('#piece').DataTable( {
-            select: true,
-            dom: 'fBrtip',
-            //stateSave: true,
-            buttons: [
-                {
-                    extend: 'colvis',
-                    postfixButtons: [ 'colvisRestore' ],
-                    columns: ':not(:first-child)'
-                }
-            ],
-            columnDefs: [
-                {
-                    targets: -1,
-                    visible: false
-                }
-            ],
-            "processing": true,
-            "serverSide": true,
-            "dataType": "json",
-            "pageLength": 15,
-            //"autoWidth": false,
-            //"stateSave": true,
-            "ajax": "{% url 'rest_piece' %}",
-            "columns": [
-            {"className": 'details-control'},
-            {"className": 'details-control'},
-            {"className": 'details-control'},
-            {"className": 'details-control'},
-            {"className": 'details-control'},
-            {"className": 'details-control'},
-            {"className": 'details-control'},
-            {"className": 'details-control'},
-            {"className": 'details-control'},
-            {"className": 'details-control'}
-            ]
-
-        });
-        {% comment %}table.page.jumpToData( "Idyla", 1 ){% endcomment %}
     });
 </script>
-<script>
-$(".btn1").click(function(){
-       $("#ex2").hide();
-       $("#ex1").width("100%");
-       $(".btn1").hide();
 
-});
-</script>
+</body>
 </html>

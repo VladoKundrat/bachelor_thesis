@@ -1,27 +1,13 @@
-{% comment %}{% include "database_of_janacek_works/piece.html" %}{% endcomment %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <title>piece detail</title>
+    <title>Piece detail</title>
 
-
-<style>
-
-#ex1 {
-
-    margin: auto;
-    float: right;
-
-    {% comment %}transition: width 2s;{% endcomment %}
-}
-
-.ul_container ul{
-    list-style: none;
-}
-
-</style>
+    <style> #table_style { float: right; } </style>
 
 </head>
 <body>
@@ -49,24 +35,18 @@
                 {% if not piece.arrangement_set.all %}
                         <li>No arrangements</li>
                 {% else %}
+                    <p>suitable for</p>
                     {% for arrangement in piece.arrangement_set.all %}
                         <li>{{ arrangement.suitable_for }} {{ arrangement.arrangemet_for }}</li>
+                        <ul>
+                            <li>arrangemed by: <b>{{ arrangement.arrangemet_by }}</b></li>
+                            <li>perfomed by: <b>{{ arrangement.perfomr_by }}</b></li>
+                        </ul>
+                        <p></p>
                     {% endfor %}
                 {% endif %}
             </ul>
         </li>
-
-
-{% comment %}        <li><a href="javascript:void(0)"><h3>MOVEMENTS</h3></a>
-            <ul class="subnav" id="sub1">
-
-                    {% for interpret in piece.i %}
-                        <li>{{ movement.movement_order }}. {{ movement.movement_title }}</li>
-                    {% endfor %}
-
-            </ul>
-        </li>{% endcomment %}
-
 
         <li><a href="javascript:void(0)"><h3>MOVEMENTS</h3></a>
             <ul class="subnav" id="sub1">
@@ -81,50 +61,33 @@
         </li>
 
 {% comment %}
-
         <li><a href="javascript:void(0)"><h3>INTERPRETS</h3></a>
             <ul class="subnav" id="sub1">
-
-                    {% for interpret in piece.interpret_set.all %}
-                        <li>{{ interpret.interpret_name }}</li>
-                    {% endfor %}
-
+                {% for interpret in album %}
+                    <li>{{ interpret.interpret_name }}</li>
+                {% endfor %}
             </ul>
         </li>
 {% endcomment %}
-
     </ul>
 </div>
 
-
-
-
-
-</body>
-
 <script>
-if (localStorage.getItem("state") == "closed") // <-- this checks closed/open state and sets subnav accordingly
-$('.subnav').show();
+    if (localStorage.getItem("state") == "closed") // this checks closed/open state and sets subnav accordingly
+    $('.subnav').show();
 
 
-$('.subnav').parent().click(function () {
-    $(this).find('#sub1').toggle(); //<-- This toggles the menu open/close
+    $('.subnav').parent().click(function () {
+        $(this).find('#sub1').toggle(); // This toggles the menu open/close
 
-    // ** Block to remeber state ** //
-    if (localStorage.getItem("state") == "open") {
-        localStorage.setItem("state", "closed"); // <-- this remembers "open" after user navigates
-    } else {
-        localStorage.setItem("state", "open"); // <-- this remembers "open" after user navigates
-    }
-    // ** Block to remeber state ** //
-});
-
-
+        // ** Block to remeber state ** //
+        if (localStorage.getItem("state") == "open") {
+            localStorage.setItem("state", "closed"); // this remembers "open" after user navigates
+        } else {
+            localStorage.setItem("state", "open"); // this remembers "open" after user navigates
+        }
+    });
 </script>
 
-
-
-
-
-{% comment %}
-</html>{% endcomment %}
+</body>
+</html>

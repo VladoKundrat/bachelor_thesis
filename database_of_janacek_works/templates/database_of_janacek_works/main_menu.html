@@ -3,29 +3,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>main menu</title>
 
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+    <meta charset="UTF-8">
+    <title>Header</title>
+
+    <!-- Local CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'database_of_janacek_works/css/style.css' %}" />
 
     <!-- DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/buttons/1.1.0/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.1.0/css/select.dataTables.min.css">
 
     <!-- jQuery -->
     <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-
 
     <!-- DataTables -->
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/buttons/1.1.0/js/dataTables.buttons.min.js"></script>
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/buttons/1.1.0/js/buttons.colVis.min.js"></script>
-
-
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/select/1.1.0/js/dataTables.select.min.js"></script>
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/1.10.10/pagination/input.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.1.0/css/select.dataTables.min.css">
 
 </head>
 <body>
@@ -39,82 +37,61 @@
 <script>
 
     function classFunction(elm) {
-        //alert(elm);
-
         if (elm.indexOf("album") > -1){
-                var n = elm.lastIndexOf('_');
-                var albumId = elm.substring(n + 1);
+            var n = elm.lastIndexOf('_');
+            var albumId = elm.substring(n + 1);
 
-                var url = '{% url 'album_detail' 999 %}'.replace (999, albumId);
-            }
+            var url = '{% url 'album_detail' 999 %}'.replace (999, albumId);
+        }
         else if (elm.indexOf("piece") > -1){
             var n = elm.lastIndexOf('_');
             var pieceId = elm.substring(n + 1);
 
             var url = '{% url 'piece_detail' 999 %}'.replace (999, pieceId);
         }
-
-            $.ajax({
-                url: url,
-                success:
-                        function(data){
-                            $("#ex2").html(data);
-
-                            //console.log(data)
-                        }
-            })
-
+        $.ajax({
+            url: url,
+            success: function(data){
+                $("#detail_style").html(data);
+            }
+        })
     }
 
 
     $(document).ready(function() {
-
         if(window.location.href.indexOf("piece") > -1){
+            $('#piece tbody').on('click', 'tr', function () {
+                var pieceId = $(this).find("td:first").text();
+                var url = '{% url 'piece_detail' 999 %}'.replace (999, pieceId);
 
-        $('#piece tbody').on('click', 'tr', function () {
-            var pieceId = $(this).find("td:first").text();
-            var url = '{% url 'piece_detail' 999 %}'.replace (999, pieceId);
-
-            $.ajax({
-                url: url,
-                success:
-                        function(data){
-                            $("#ex1").width("70%");
-                            $(".btn1").show();
-                            $("#ex2").show();
-                            $("#ex2").html(data);
-
-                            //console.log(data)
-                        }
-            })
-        });
+                go_to_url(url);
+            });
         }
         else if (window.location.href.indexOf("album") > -1){
             $('#album tbody').on('click', 'tr', function () {
-            var albumId = $(this).find("td:first").text();
-            var url = '{% url 'album_detail' 999 %}'.replace (999, albumId);
+                var albumId = $(this).find("td:first").text();
+                var url = '{% url 'album_detail' 999 %}'.replace (999, albumId);
 
-            $.ajax({
-                url: url,
-                success:
-                        function(data){
-                            $("#ex1").width("70%");
-                            $(".btn1").show();
-                            $("#ex2").show();
-                            $("#ex2").html(data);
-
-                            //console.log(data)
-                        }
-            })
-        });
+                go_to_url(url);
+            });
         }
     });
 
-
-
-
-
 </script>
 
+
+<script>
+    function go_to_url(url) {
+        $.ajax({
+            url: url,
+            success: function (data) {
+                $("#table_style").width("70%");
+                $(".hide_button").show();
+                $("#detail_style").show();
+                $("#detail_style").html(data);
+            }
+        })
+    }
+</script>
 
 </html>
