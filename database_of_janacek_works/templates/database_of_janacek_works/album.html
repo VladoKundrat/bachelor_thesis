@@ -8,6 +8,16 @@
     <meta charset="UTF-8">
     <title>album</title>
 
+    <script src="{% static "database_of_janacek_works/js/app.js" %}" type="text/javascript"></script>
+
+    <script>
+        $(".hide_button").click(function(){
+            $("#detail_style").hide();
+            $("#table_style").width("99%");
+            $(".hide_button").hide();
+        });
+    </script>
+
 </head>
 <body>
 
@@ -27,25 +37,25 @@
             <th>LABEL NAME</th>
             <th>CATALOGUE NUMBER</th>
             <th>ALBUM NAME</th>
-            <th>album_published_year</th>
-            <th>published_country</th>
-            <th>number_of_media</th>
-            <th>recording_technology</th>
-            <th>diameter</th>
-            <th>rpm</th>
-            <th>region_code</th>
-            <th>side_coumpling</th>
-            <th>tv_system</th>
-            <th>sound_system</th>
-            <th>medium_type</th>
-            <th>subtitles</th>
-            <th>comment</th>
-            <th>text_language</th>
-            <th>text_by</th>
-            <th>note_language</th>
-            <th>note_by</th>
-            <th>libretto_language</th>
-            <th>libretto_by</th>
+            <th>PUBLISHED YEAR</th>
+            <th>PUBLISHED COUNTRY</th>
+            <th>NUMBER OF MEDIA</th>
+            <th>RECORDING TECHNOLOGY</th>
+            <th>DIAMETER (LP)</th>
+            <th>RPM (LP)</th>
+            <th>REGION CODE</th>
+            <th>SIDE COUMPLING</th>
+            <th>TV SYSTEM</th>
+            <th>SOUND SYSTEM</th>
+            <th>MEDIUM TYPE</th>
+            <th>SUBTITLES</th>
+            <th>COMMENT</th>
+            <th>TEXT LENGUAGE</th>
+            <th>TEXT AUTHORS</th>
+            <th>NOTE LANGUAGE</th>
+            <th>NOTE AUTHORS</th>
+            <th>LIBRATTO LANGUAGE</th>
+            <th>LIBRETO AUTHORS</th>
         </tr>
         </thead>
         <tbody></tbody>
@@ -56,16 +66,6 @@
 
 <button class="hide_button"> < </button>
 
-<script src="{% static "database_of_janacek_works/js/app.js" %}" type="text/javascript"></script>
-
-<script>
-$(".hide_button").click(function(){
-       $("#detail_style").hide();
-       $("#table_style").width("99%");
-       $(".hide_button").hide();
-
-});
-</script>
 
 </body>
 </html>

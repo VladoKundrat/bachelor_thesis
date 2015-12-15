@@ -34,64 +34,6 @@
 
 </body>
 
-<script>
 
-    function classFunction(elm) {
-        if (elm.indexOf("album") > -1){
-            var n = elm.lastIndexOf('_');
-            var albumId = elm.substring(n + 1);
-
-            var url = '{% url 'album_detail' 999 %}'.replace (999, albumId);
-        }
-        else if (elm.indexOf("piece") > -1){
-            var n = elm.lastIndexOf('_');
-            var pieceId = elm.substring(n + 1);
-
-            var url = '{% url 'piece_detail' 999 %}'.replace (999, pieceId);
-        }
-        $.ajax({
-            url: url,
-            success: function(data){
-                $("#detail_style").html(data);
-            }
-        })
-    }
-
-
-    $(document).ready(function() {
-        if(window.location.href.indexOf("piece") > -1){
-            $('#piece tbody').on('click', 'tr', function () {
-                var pieceId = $(this).find("td:first").text();
-                var url = '{% url 'piece_detail' 999 %}'.replace (999, pieceId);
-
-                go_to_url(url);
-            });
-        }
-        else if (window.location.href.indexOf("album") > -1){
-            $('#album tbody').on('click', 'tr', function () {
-                var albumId = $(this).find("td:first").text();
-                var url = '{% url 'album_detail' 999 %}'.replace (999, albumId);
-
-                go_to_url(url);
-            });
-        }
-    });
-
-</script>
-
-
-<script>
-    function go_to_url(url) {
-        $.ajax({
-            url: url,
-            success: function (data) {
-                $("#table_style").width("70%");
-                $(".hide_button").show();
-                $("#detail_style").show();
-                $("#detail_style").html(data);
-            }
-        })
-    }
-</script>
 
 </html>

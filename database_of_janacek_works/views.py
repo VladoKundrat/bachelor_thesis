@@ -5,13 +5,7 @@ from django_datatables_view.base_datatable_view import BaseDatatableView
 from database_of_janacek_works.models import Piece, Album, Arrangement
 
 
-class IndexView(generic.ListView):
-    template_name = 'database_of_janacek_works/index.html'
-    context_object_name = 'piece_list'
 
-    def get_queryset(self):
-        """Return the last five published questions."""
-        return Piece.objects.all()
 
 
 #classes for detail
@@ -25,17 +19,13 @@ class AlbumDetailView(generic.DetailView):
     template_name = 'database_of_janacek_works/album_detail.html'
 
 
-#
+
 
 def piece(request):
     return render_to_response('database_of_janacek_works/piece.html', {})
 
 def album(request):
     return render_to_response('database_of_janacek_works/album.html', {})
-
-def arrangement(request):
-    return render_to_response('database_of_janacek_works/arrangement.html', {})
-
 
 
 class PieceListJson(BaseDatatableView):
@@ -76,16 +66,5 @@ class AlbumListJson(BaseDatatableView):
                      'comment', 'text_language', 'text_by', 'note_language', 'note_by', 'libretto_language', 'libretto_by']
 
     max_display_length = 4000
-
-
-class ArrangementListJson(BaseDatatableView):
-
-    model = Arrangement
-
-    columns = ['arrangement_id', 'suitable_for', 'arrangemet_for', 'arrangemet_by', 'perfomr_by']
-
-    order_columns = ['arrangement_id', 'suitable_for', 'arrangemet_for', 'arrangemet_by', 'perfomr_by']
-
-    max_display_length = 500
 
 
