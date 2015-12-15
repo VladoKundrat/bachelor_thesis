@@ -1,5 +1,5 @@
 {% load static %}
-{% include "database_of_janacek_works/main_menu.html" %}
+{% include "database_of_janacek_works/base.html" %}
 
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/html">
@@ -9,14 +9,6 @@
     <title>album</title>
 
     <script src="{% static "database_of_janacek_works/js/app.js" %}" type="text/javascript"></script>
-
-    <script>
-        $(".hide_button").click(function(){
-            $("#detail_style").hide();
-            $("#table_style").width("99%");
-            $(".hide_button").hide();
-        });
-    </script>
 
 </head>
 <body>
@@ -66,6 +58,13 @@
 
 <button class="hide_button"> < </button>
 
+<script>
+    $(".hide_button").click(function(){
+        $("#detail_style").hide();
+        $("#table_style").width("99%");
+        $(".hide_button").hide();
+    });
+</script>
 
 </body>
 </html>

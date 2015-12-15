@@ -1,11 +1,7 @@
-from django.http import HttpResponse, Http404
-from django.shortcuts import render_to_response, render, get_object_or_404
+from django.shortcuts import render_to_response
 from django.views import generic
 from django_datatables_view.base_datatable_view import BaseDatatableView
-from database_of_janacek_works.models import Piece, Album, Arrangement
-
-
-
+from database_of_janacek_works.models import Piece, Album
 
 
 #classes for detail
@@ -17,8 +13,6 @@ class PieceDetailView(generic.DetailView):
 class AlbumDetailView(generic.DetailView):
     model = Album
     template_name = 'database_of_janacek_works/album_detail.html'
-
-
 
 
 def piece(request):
